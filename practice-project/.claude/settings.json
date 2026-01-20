@@ -28,7 +28,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "if [[ \"$CLAUDE_FILE_PATH\" == *.py ]]; then ruff format \"$CLAUDE_FILE_PATH\" 2>/dev/null && ruff check \"$CLAUDE_FILE_PATH\" --fix 2>/dev/null || true; fi"
+            "command": "FILE=$(jq -r '.tool_input.file_path // empty'); if [[ \"$FILE\" == *.py ]]; then ruff format \"$FILE\" 2>/dev/null; ruff check \"$FILE\" --fix 2>/dev/null; fi; true"
           }
         ]
       }

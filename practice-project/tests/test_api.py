@@ -97,9 +97,13 @@ class TestTaskUpdate:
         assert response.status_code == 200
         assert response.json()["title"] == "Updated Title"
 
+    def test_update_nonexistent_task(self, client):
+        """Updating a nonexistent task returns 404."""
+        response = client.put("/tasks/99999", json={"title": "New Title"})
+        assert response.status_code == 404
+
     # MISSING: Test for updating completion status
     # MISSING: Test for updating description
-    # MISSING: Test for updating nonexistent task
     # MISSING: Test for partial updates
 
 
@@ -116,15 +120,58 @@ class TestTaskDelete:
         get_response = client.get(f"/tasks/{task_id}")
         assert get_response.status_code == 404
 
-    # MISSING: Test for deleting nonexistent task
+    def test_delete_nonexistent_task(self, client):
+        """Deleting a nonexistent task returns 404."""
+        response = client.delete("/tasks/99999")
+        assert response.status_code == 404
 
 
 class TestTaskSearch:
     """Tests for search functionality."""
 
-    # MISSING: All search tests
-    # MISSING: SQL injection tests (security)
-    pass
+    def test_search_tasks_with_matches(self, client, sample_task):
+        """Search returns matching tasks."""
+        response = client.get("/tasks/search", params={"q": "Test"})
+        assert response.status_code == 200
+        assert len(response.json()) >= 1
+
+    def test_search_tasks_no_matches(self, client):
+        """Search returns empty list when no matches."""
+        response = client.get("/tasks/search", params={"q": "nonexistent"})
+        assert response.status_code == 200
+        assert response.json() == []
+
+
+class TestTaskPriority:
+    """Tests for task priority feature (TDD exercise)."""
+
+    def test_create_task_with_priority(self, client):
+        """Test creating a task with priority field."""
+        response = client.post("/tasks", json={
+            "title": "Priority Task",
+            "description": "A high priority task",
+            "priority": "high"
+        })
+        assert response.status_code == 200
+        data = response.json()
+        assert data["priority"] == "high"
+
+    def test_create_task_default_priority(self, client):
+        """Test that tasks without priority default to 'medium'."""
+        response = client.post("/tasks", json={
+            "title": "Default Priority Task"
+        })
+        assert response.status_code == 200
+        data = response.json()
+        assert data["priority"] == "medium"
+
+    def test_invalid_priority_rejected(self, client):
+        """Test that invalid priority values are rejected."""
+        response = client.post("/tasks", json={
+            "title": "Invalid Priority Task",
+            "priority": "urgent"  # not a valid value
+        })
+        assert response.status_code == 422  # Validation error
 
 
 # MISSING: Integration tests

@@ -3,7 +3,7 @@
 from fastapi import APIRouter, HTTPException
 
 from . import database
-from .models import Task, TaskCreate, TaskUpdate
+from .models import TaskCreate, TaskUpdate
 
 router = APIRouter()
 
@@ -15,13 +15,15 @@ def list_tasks():
     # FLAW: Manual conversion instead of using Pydantic properly
     result = []
     for task in tasks:
-        result.append({
-            "id": task["id"],
-            "title": task["title"],
-            "description": task["description"],
-            "completed": bool(task["completed"]),
-            "created_at": task["created_at"]
-        })
+        result.append(
+            {
+                "id": task["id"],
+                "title": task["title"],
+                "description": task["description"],
+                "completed": bool(task["completed"]),
+                "created_at": task["created_at"],
+            }
+        )
     return result
 
 
@@ -32,13 +34,15 @@ def search_tasks(q: str):
     tasks = database.search_tasks(q)
     result = []
     for task in tasks:
-        result.append({
-            "id": task["id"],
-            "title": task["title"],
-            "description": task["description"],
-            "completed": bool(task["completed"]),
-            "created_at": task["created_at"]
-        })
+        result.append(
+            {
+                "id": task["id"],
+                "title": task["title"],
+                "description": task["description"],
+                "completed": bool(task["completed"]),
+                "created_at": task["created_at"],
+            }
+        )
     return result
 
 
@@ -55,7 +59,7 @@ def create_task(task: TaskCreate):
         "title": new_task["title"],
         "description": new_task["description"],
         "completed": bool(new_task["completed"]),
-        "created_at": new_task["created_at"]
+        "created_at": new_task["created_at"],
     }
 
 
@@ -74,7 +78,7 @@ def get_task(task_id: int):
         "title": task["title"],
         "description": task["description"],
         "completed": bool(task["completed"]),
-        "created_at": task["created_at"]
+        "created_at": task["created_at"],
     }
 
 
@@ -90,7 +94,7 @@ def update_task(task_id: int, task_update: TaskUpdate):
         task_id,
         title=task_update.title,
         description=task_update.description,
-        completed=task_update.completed
+        completed=task_update.completed,
     )
 
     # FLAW: Yet more duplicated conversion code
@@ -100,7 +104,7 @@ def update_task(task_id: int, task_update: TaskUpdate):
         "title": updated_task["title"],
         "description": updated_task["description"],
         "completed": bool(updated_task["completed"]),
-        "created_at": updated_task["created_at"]
+        "created_at": updated_task["created_at"],
     }
 
 
@@ -111,19 +115,9 @@ def delete_task(task_id: int):
     # FLAW: No check if task exists, just deletes silently
     existing = database.get_task_by_id(task_id)
     if not existing:
-        raise HTTPException(status_code=404, detail="not found")  # FLAW: Inconsistent error message
+        raise HTTPException(
+            status_code=404, detail="not found"
+        )  # FLAW: Inconsistent error message
 
     database.delete_task(task_id)
     return {"message": "Task deleted"}  # FLAW: Inconsistent response format
-
-
-# FLAW: Missing type hints on this function
-def convert_task_row(row):
-    """Convert a database row to a dict - helper that should be used but isn't."""
-    return {
-        "id": row["id"],
-        "title": row["title"],
-        "description": row["description"],
-        "completed": bool(row["completed"]),
-        "created_at": row["created_at"]
-    }

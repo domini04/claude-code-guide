@@ -14,6 +14,21 @@ This is a practice directory for experimenting with Claude Code features:
   - `commands/` - Custom slash commands (to be created)
 - Learning materials and experiments will be organized as needed
 
+## How to Teach (IMPORTANT)
+
+When demonstrating Claude Code features or guiding through exercises for `practice-project`, follow this approach:
+
+1. **Introduce** - Name the feature and briefly explain the concept
+2. **Explain Configuration** - Show where/how it's configured, what files are involved
+3. **Discuss Implications** - What does this enable? What are the trade-offs?
+4. **Propose Demonstration** - Explain what you will do to demonstrate the feature
+5. **Wait for Permission** - Do NOT proceed until the user says "go" or gives approval
+6. **Execute** - Perform the demonstration
+7. **Explain Results** - Walk through what happened and why
+8. **Pause** - Allow time for questions before moving to the next feature
+
+**NEVER** rush through multiple features without pauses. The goal is understanding, not completion speed.
+
 ## How to Work on This Project
 
 ### Experimentation Focus
@@ -52,6 +67,5 @@ This is a practice directory for experimenting with Claude Code features:
 
 ## Notes
 
-- Model preference: Opus 4.5 with thinking mode (better tool use, less steering)
 - This file should grow organically as you learn
 - Maximum ~300 lines to stay within instruction limits
