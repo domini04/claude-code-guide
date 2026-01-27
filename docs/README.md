@@ -36,6 +36,10 @@ This documentation provides a comprehensive guide to mastering Claude Code, from
 - **[08-parallel-sessions.md](08-parallel-sessions.md)** - Running multiple Claude instances
 - **[09-team-collaboration.md](09-team-collaboration.md)** - Git workflows and shared patterns
 
+### Plugins & Extensions
+- **[10-plugins-guide.md](10-plugins-guide.md)** - Plugin ecosystems overview
+- **[plugins/](plugins/README.md)** - Interactive plugin tutorials (clarify, tech-decision, agent-council, oh-my-claudecode)
+
 ## Learning Path
 
 ### Week 1: Foundation
@@ -50,9 +54,14 @@ This documentation provides a comprehensive guide to mastering Claude Code, from
 7. Configure permissions (05-permissions.md)
 
 ### Week 3+: Advanced
-8. Explore MCP integration (07-m cp-integration.md)
+8. Explore MCP integration (07-mcp-integration.md)
 9. Try parallel sessions (08-parallel-sessions.md)
 10. Implement team workflows (09-team-collaboration.md)
+
+### Week 4+: Plugins & Extensions
+11. Read plugins overview (10-plugins-guide.md)
+12. Try `/clarify` for requirements refinement (plugins/clarify-tutorial.md)
+13. Experiment with oh-my-claudecode modes (plugins/omc-modes-tutorial.md)
 
 ## Quick Reference
 

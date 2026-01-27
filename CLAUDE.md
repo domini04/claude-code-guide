@@ -51,6 +51,7 @@ NEVER rush through features. Understanding > completion speed.
 | MCP | `docs/07-mcp-integration.md` | External tool integration |
 | Parallel sessions | `docs/08-parallel-sessions.md` | Scaling workflows |
 | Team collaboration | `docs/09-team-collaboration.md` | Shared patterns |
+| Plugins overview | `docs/10-plugins-guide.md` | Extending Claude Code |
 
 ## Session Continuity
 - Update `SESSION.md` when starting/ending work sessions
