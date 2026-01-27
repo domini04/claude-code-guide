@@ -1,71 +1,61 @@
 # Claude Code Learning Project
 
-## Project Overview
-
-**Purpose**: Learning environment for exploring Claude Code features, workflows, and professional best practices.
-
-**Based on**: Boris Cherny's (Claude Code creator) setup and professional workflows from January 2026.
+## Purpose
+Learning environment for mastering Claude Code features, based on Boris Cherny's professional workflows.
 
 ## Project Structure
+```
+/claude-code/
+├── CLAUDE.md              # Project-wide instructions (you are here)
+├── SESSION.md             # Current work tracking (gitignored)
+├── docs/                  # Learning materials (00-09 guides)
+│   └── README.md          # Start here for structured learning
+├── practice-project/      # FastAPI app with intentional flaws
+│   ├── CLAUDE.md          # Project-specific instructions
+│   └── GUIDE.md           # Exercise walkthrough
+└── .claude/
+    ├── settings.local.json
+    └── agents/            # Shared agents (code-reviewer, test-runner)
+```
 
-This is a practice directory for experimenting with Claude Code features:
-- `.claude/` - Configuration files for Claude Code
-  - `settings.local.json` - Local permissions and settings
-  - `commands/` - Custom slash commands (to be created)
-- Learning materials and experiments will be organized as needed
+## Quick Start
+- **New to Claude Code?** Start with `docs/README.md`
+- **Hands-on practice?** See `practice-project/GUIDE.md`
+- **Resuming work?** Check `SESSION.md`
 
-## How to Teach (IMPORTANT)
+## Learning Philosophy
+1. Progressive disclosure - read docs on-demand, not upfront
+2. Verification first - every change needs a way to verify
+3. Plan before execute - use Plan Mode (Shift+Tab x2)
 
-When demonstrating Claude Code features or guiding through exercises for `practice-project`, follow this approach:
+## Teaching Protocol
+When demonstrating features for practice-project:
+1. Introduce concept briefly
+2. Show configuration location
+3. Explain implications
+4. **WAIT for "go" before executing**
+5. Explain results after
 
-1. **Introduce** - Name the feature and briefly explain the concept
-2. **Explain Configuration** - Show where/how it's configured, what files are involved
-3. **Discuss Implications** - What does this enable? What are the trade-offs?
-4. **Propose Demonstration** - Explain what you will do to demonstrate the feature
-5. **Wait for Permission** - Do NOT proceed until the user says "go" or gives approval
-6. **Execute** - Perform the demonstration
-7. **Explain Results** - Walk through what happened and why
-8. **Pause** - Allow time for questions before moving to the next feature
+NEVER rush through features. Understanding > completion speed.
 
-**NEVER** rush through multiple features without pauses. The goal is understanding, not completion speed.
+## Documentation Index
+| Topic | File | When to Read |
+|-------|------|--------------|
+| Learning path | `docs/README.md` | First time setup |
+| CLAUDE.md mastery | `docs/01-claude-md-guide.md` | Setting up projects |
+| Plan Mode | `docs/02-plan-mode-workflows.md` | Before complex tasks |
+| Slash commands | `docs/03-slash-commands.md` | Creating automations |
+| Hooks | `docs/04-hooks-automation.md` | Auto-formatting setup |
+| Permissions | `docs/05-permissions.md` | Security configuration |
+| Verification | `docs/06-verification-quality.md` | Quality improvement |
+| MCP | `docs/07-mcp-integration.md` | External tool integration |
+| Parallel sessions | `docs/08-parallel-sessions.md` | Scaling workflows |
+| Team collaboration | `docs/09-team-collaboration.md` | Shared patterns |
 
-## How to Work on This Project
+## Session Continuity
+- Update `SESSION.md` when starting/ending work sessions
+- This file is gitignored (personal state)
 
-### Experimentation Focus
-- This is a **learning project** - feel free to experiment and try different approaches
-- Document learnings and mistakes to build knowledge over time
-- Test features in isolation before combining them
-
-### Learning Priorities
-1. Master Plan Mode (Shift+Tab twice) before making changes
-2. Create verification loops for quality (aim for 2-3x improvement)
-3. Build up custom commands and hooks incrementally
-4. Share learnings by updating this file
-
-### Key Commands
-- Use `/help` to explore available commands
-- Use `/permissions` to manage allowed operations
-- Press `#` during work to suggest additions to this file
-
-## Best Practices to Follow
-
-### Progressive Learning
-- Start with basics (Plan Mode, verification) before advanced features
-- Master one feature before adding complexity
-- Document what works and what doesn't
-
-### Verification First
-- IMPORTANT: Always give Claude a way to verify its work
-- Test changes immediately after implementation
-- Build feedback loops into workflows
-
-### Keep This File Updated
-- Add new learnings as you discover them
-- Remove outdated instructions
-- Keep it concise and universally applicable
-- Focus on WHAT (tech/structure), WHY (purpose), and HOW (workflow)
-
-## Notes
-
-- This file should grow organically as you learn
-- Maximum ~300 lines to stay within instruction limits
+## Constraints
+- NEVER delete practice-project source files without backup
+- NEVER skip verification steps when demonstrating features
